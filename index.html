@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Kanaka Durga - Neural Hub</title>
+    <style>
+        :root {
+            --neon: #00f2ff;
+            --accent: #7000ff;
+            --bg: #030712;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: radial-gradient(circle at top right, #0a192f, var(--bg));
+            color: white;
+            padding: 15px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-bar {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .mail-btn-nav {
+            background: var(--glass);
+            color: var(--neon);
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .mail-btn-nav:hover {
+            background: var(--neon);
+            color: black;
+            box-shadow: 0 0 20px var(--neon);
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 28px;
+            letter-spacing: 5px;
+            color: var(--neon);
+            margin: 0;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--neon);
+        }
+
+        .tagline {
+            color: #94a3b8;
+            margin-bottom: 30px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .mic-container {
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .mic-btn {
+            background: linear-gradient(135deg, var(--neon), var(--accent));
+            color: white;
+            border: none;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            font-size: 35px;
+            cursor: pointer;
+            transition: 0.4s;
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mic-btn.active {
+            background: #ff0055;
+            box-shadow: 0 0 40px #ff0055;
+            animation: pulse 1.2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        #status {
+            font-weight: bold;
+            color: var(--neon);
+            margin-bottom: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        h3 {
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+
+        textarea {
+            width: 100%;
+            height: 220px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #1e293b;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 16px;
+            color: #e2e8f0;
+            box-sizing: border-box;
+            resize: none;
+            outline: none;
+            transition: 0.3s;
+            line-height: 1.6;
+        }
+
+        textarea:focus {
+            border-color: var(--neon);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .action-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            flex: 1;
+            border: none;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn { background: #334155; color: white; }
+        .copy-btn:hover { background: #475569; }
+
+        .gemini-btn {
+            background: white;
+            color: black;
+        }
+
+        .gemini-btn:hover {
+            background: var(--neon);
+            color: black;
+            box-shadow: 0 0 20px var(--neon);
+        }
+
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .action-container { flex-direction: column; }
+            h1 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <a href="email.html" class="mail-btn-nav">Voice Email Portal ✉️</a>
+    </div>
+
+    <div class="card">
+        <h1>SRI KANAKA DURGA</h1>
+        <p class="tagline">GENERATOR HIRING SERVICES</p>
+
+        <div class="mic-container">
+            <button class="mic-btn" id="micBtn">🎙️</button>
+        </div>
+        
+        <p id="status">System Ready</p>
+
+        <div class="grid">
+            <div style="text-align: left;">
+                <h3>Raw Telugu Signal</h3>
+                <textarea id="teluguInput" placeholder="Captured voice data..."></textarea>
+            </div>
+            <div style="text-align: left;">
+                <h3>Neural English Prompt</h3>
+                <textarea id="englishOutput" placeholder="AI Optimized prompt..."></textarea>
+            </div>
+        </div>
+
+        <div class="action-container">
+            <button class="btn copy-btn" id="copyBtn">📋 Copy Prompt</button>
+            <a href="#" target="_blank" class="btn gemini-btn" id="geminiLink">🚀 Generate Image</a>
+        </div>
+    </div>
+
+    <script>
+        const teluguInput = document.getElementById('teluguInput');
+        const englishOutput = document.getElementById('englishOutput');
+        const geminiLink = document.getElementById('geminiLink');
+        const status = document.getElementById('status');
+        const micBtn = document.getElementById('micBtn');
+        const copyBtn = document.getElementById('copyBtn');
+
+        let isRecording = false;
+
+        // 1. Voice Recognition Setup
+        const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'te-IN';
+        recognition.continuous = true; // Allows long speaking
+
+        // TOGGLE START/STOP
+        micBtn.onclick = () => {
+            if (!isRecording) {
+                recognition.start();
+                micBtn.classList.add('active');
+                status.innerText = "Listening... Tap to Stop";
+                isRecording = true;
+            } else {
+                recognition.stop();
+                micBtn.classList.remove('active');
+                status.innerText = "Processing...";
+                isRecording = false;
+            }
+        };
+
+        recognition.onresult = (event) => {
+            let transcript = "";
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                transcript += event.results[i][0].transcript;
+            }
+            teluguInput.value = transcript;
+            updatePrompt(transcript);
+        };
+
+        // Allow Manual Edits on Telugu
+        teluguInput.oninput = () => { updatePrompt(teluguInput.value); };
+
+        // Allow Manual Edits on English Prompt (Update Link)
+        englishOutput.oninput = () => {
+            geminiLink.href = `https://gemini.google.com/app?q=${encodeURIComponent(englishOutput.value)}`;
+        };
+
+        async function updatePrompt(text) {
+            if (!text) return;
+            status.innerText = "Syncing Translation...";
+            const transUrl = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=${encodeURIComponent(text)}`;
+            try {
+                const res = await fetch(transUrl);
+                const data = await res.json();
+                const translated = data[0][0][0];
+                const finalPrompt = `Create a 2K high-quality photo based on this: "${translated}". CRITICAL: The image must have a professional sign at the top saying "SRI KANAKA DURGA GENERATORS" and a line at the bottom saying "Contact Us: 9247356599". Make it look modern and professional.`;
+                
+                englishOutput.value = finalPrompt;
+                geminiLink.href = `https://gemini.google.com/app?q=${encodeURIComponent(finalPrompt)}`;
+                status.innerText = "Sync Complete";
+            } catch (e) { 
+                status.innerText = "Connection Error"; 
+            }
+        }
+
+        copyBtn.onclick = () => {
+            const textToCopy = englishOutput.value;
+            if (!textToCopy) return;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = "✅ Copied";
+                setTimeout(() => { copyBtn.innerHTML = originalText; }, 2000);
+            });
+        };
+    </script>
+</body>
+</html>
